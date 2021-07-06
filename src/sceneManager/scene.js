@@ -13,18 +13,35 @@ export default class SceneManager {
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0xFF4444);
 
+        /**
+         * Renderer
+         */
         const renderer = new THREE.WebGLRenderer({ canvas:this.canvas, antialias: true, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight, false);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
 
         window.addEventListener('resize', () => this.onWindowsResize(), false);
-
-        const camera = new THREE.PerspectiveCamera(75 ,window.innerWidth / window.innerHeight,0.1,1000);
-        camera.position.z = 20;
-        camera.position.y = 5;
+        
+        this.aspectRatio = window.innerWidth / window.innerHeight;
+        this.cameraSize = 20;
+        const camera = new THREE.OrthographicCamera(
+            (this.cameraSize * this.aspectRatio) / - 2, 
+            (this.cameraSize * this.aspectRatio) / 2,
+            this.cameraSize / 2,
+            this.cameraSize / - 2,
+            0.01,
+            1000
+        );
+        camera.position.set(10,10,10);
         camera.lookAt(0,0,0);
-
-        //init stats
+        camera.zoom = 5;
+        scene.add(camera);
+        // const helper = new THREE.CameraHelper( camera );
+        // scene.add( helper );
+       
+        /**
+         * Intialize Stats
+         */
         let stats = new Stats();
         stats.setMode(0);
         stats.domElement.style.position = 'absolute';
@@ -36,6 +53,8 @@ export default class SceneManager {
         this.renderer = renderer;
         this.camera = camera;
         this.stats = stats;
+
+        
     }
 
     add(obj){
@@ -51,7 +70,15 @@ export default class SceneManager {
     }
 
     onWindowsResize(){
-        this.camera.aspect = window.innerWidth / window.innerHeight;
+        // this.camera.aspect = window.innerWidth / window.innerHeight;
+        console.log('wd');
+        const aspect = window.innerWidth / window.innerHeight;
+        
+        this.camera.left = (this.cameraSize *  aspect) / -2;
+        this.camera.right = (this.cameraSize *  aspect) / 2;
+        this.camera.zoom = 1;
+    
+
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(window.innerWidth, window.innerHeight, false); 
     }
