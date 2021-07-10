@@ -2,8 +2,8 @@
 export default {
     // config options
     root:'./src/',
+    assetsInclude:'./src/soundEffects',
     build:{
-        sourcemap:true,
         chunkSizeWarningLimit:1000
     },
     server: {

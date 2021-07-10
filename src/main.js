@@ -1,5 +1,7 @@
 import '../style.css'
 import * as THREE from 'three';
+// import woodHitSound from './soundEffects/wood-hit.wav';
+// import glassBreakSound from './soundEffects/glass-break.wav';
 // import * as dat from 'dat.gui';
 import SceneManager from './sceneManager/scene';
 import CANNON from 'cannon';
