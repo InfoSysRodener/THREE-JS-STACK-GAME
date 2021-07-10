@@ -71,7 +71,6 @@ export default class SceneManager {
 
     onWindowsResize(){
         // this.camera.aspect = window.innerWidth / window.innerHeight;
-        console.log('wd');
         const aspect = window.innerWidth / window.innerHeight;
         
         this.camera.left = (this.cameraSize *  aspect) / -2;
