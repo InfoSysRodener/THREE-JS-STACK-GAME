@@ -3,7 +3,8 @@ export default {
     // config options
     root:'./src/',
     build:{
-        chunkSizeWarningLimit:64000
+        sourcemap:true,
+        chunkSizeWarningLimit:1000
     },
     server: {
         fs: {
