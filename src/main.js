@@ -1,7 +1,7 @@
 import '../style.css'
 import * as THREE from 'three';
-// import woodHitSound from './soundEffects/wood-hit.wav';
-// import glassBreakSound from './soundEffects/glass-break.wav';
+import woodsound from './soundEffects/wood-hit.wav';
+import glassSound from './soundEffects/glass-break.wav';
 // import * as dat from 'dat.gui';
 import SceneManager from './sceneManager/scene';
 import CANNON from 'cannon';
@@ -38,12 +38,12 @@ scene.add(ambiantLight);
 /**
  * Sounds
  */
-const woodHitSound = new Audio('./soundEffects/wood-hit.wav');
+const woodHitSound = new Audio(woodsound);
 const playWoodHitSound = () => {
 	woodHitSound.currentTime = 0;
 	woodHitSound.play();
 }
-const glassBreakSound = new Audio('./soundEffects/glass-break.wav');
+const glassBreakSound = new Audio(glassSound);
 const playGlassBreakSound = () => {
 	glassBreakSound.currentTime = 0;
 	glassBreakSound.play();
