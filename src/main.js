@@ -1,13 +1,7 @@
 import '../style.css'
 import * as THREE from 'three';
-import woodsound from './soundEffects/wood-hit.wav';
-import glassSound from './soundEffects/glass-break.wav';
-// import * as dat from 'dat.gui';
 import SceneManager from './sceneManager/scene';
 import CANNON from 'cannon';
-// import gsap from 'gsap';
-
-// const gui = new dat.GUI();
 
 /**
  * Scene Manager
@@ -38,12 +32,12 @@ scene.add(ambiantLight);
 /**
  * Sounds
  */
-const woodHitSound = new Audio(woodsound);
+const woodHitSound = new Audio('./soundEffects/wood-hit.wav');
 const playWoodHitSound = () => {
 	woodHitSound.currentTime = 0;
 	woodHitSound.play();
 }
-const glassBreakSound = new Audio(glassSound);
+const glassBreakSound = new Audio('./soundEffects/glass-break.wav');
 const playGlassBreakSound = () => {
 	glassBreakSound.currentTime = 0;
 	glassBreakSound.play();
@@ -95,10 +89,9 @@ function stopTimer(){
 	}
 }
 
-
-
 document.querySelector('.resetButton').onclick = () => {
 	reset();
+	getOverlay();
 }
 document.querySelector('.playButton').onclick = () => {
 	play();
@@ -110,6 +103,7 @@ document.querySelector('.game-start').onclick = () => {
 }
 document.querySelector('.play-again').onclick = () => {
 	reset();
+	getOverlay('play');
 }
 const pause = document.querySelector('.pauseButton');
 pause.onclick = () => {
@@ -164,7 +158,6 @@ function updateDom(){
 	overHangs = [];
 	addLayer(0, 0, boxSize, boxSize, 'x');
 	addLayer(-10, 0, boxSize, boxSize, 'x');
-	getOverlay();
 	play();
 	updateDom();
 }
