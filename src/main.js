@@ -162,7 +162,8 @@ function updateDom(){
 	overHangs = [];
 	addLayer(0, 0, boxSize, boxSize, 'x');
 	addLayer(-10, 0, boxSize, boxSize, 'x');
-	getOverlay('play');
+	getOverlay();
+	play();
 	updateDom();
 }
 

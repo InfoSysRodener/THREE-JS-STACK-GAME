@@ -4,5 +4,11 @@ export default {
     root:'./src/',
     build:{
         chunkSizeWarningLimit:64000
-    }
+    },
+    server: {
+        fs: {
+          // Allow serving files from one level up to the project root
+          allow: ['..']
+        }
+      }
 }
