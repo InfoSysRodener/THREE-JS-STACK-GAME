@@ -73,25 +73,24 @@ let timerStart;
 
 function startTimer(){
 	timerDom.innerHTML = timerValue;
+	timerDom.style.color = 'white';
 	timerStart = setInterval(() => {
 		timerDom.innerHTML = timerValue;
+		
+		timerDom.style.color = timerValue < 5 ? 'red' : 'white';
+		if(timerValue <= 0) {
+			clearInterval(timerStart);
+			gameOver();
+		}
 		timerValue--;
-		stopTimer();
 	},1000);
-}
-
-function stopTimer(){
-	timerDom.style.color = timerValue < 5 ? 'red' : 'white';
-	if(timerValue < 0) {
-		clearInterval(timerStart);
-		// Game Over
-		gameOver();
-	}
+	
 }
 
 document.querySelector('.resetButton').onclick = () => {
 	reset();
 	getOverlay();
+	play();
 }
 document.querySelector('.playButton').onclick = () => {
 	play();
@@ -158,7 +157,6 @@ function updateDom(){
 	overHangs = [];
 	addLayer(0, 0, boxSize, boxSize, 'x');
 	addLayer(-10, 0, boxSize, boxSize, 'x');
-	play();
 	updateDom();
 }
 
@@ -210,9 +208,6 @@ function gameOver(){
  * Play
  */
 function play(){
-	/**
-	 * Start the timer
-	 */
 	startTimer();
 	scene.renderer.setAnimationLoop(animate);
 	canvas.addEventListener('click', () => {
